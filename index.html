@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia ❤️</title>
+    <style>
+        body {
+            background-color: #ffebf0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+        .book {
+            width: 80%;
+            max-width: 500px;
+            height: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .page {
+            display: none;
+            font-size: 18px;
+        }
+        .page.active {
+            display: block;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #d63384;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #b52b6c;
+        }
+        .flower {
+            position: absolute;
+            font-size: 25px;
+            animation: float 6s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-50px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📖 Nuestra Historia de Amor ❤️</h1>
+
+    <div class="book">
+        <div class="page active" id="page1">
+            <h2>Cómo Nos Conocimos</h2>
+            <p>Nos conocimos un día después de una fiesta. Yo la vi y me encantó. Me enamoré de ella, le hablé y ahí comenzaron los 3 años más lindos de mi vida.</p>
+        </div>
+        <div class="page" id="page2">
+            <h2>Nuestra Primera Cita</h2>
+            <p>Un día, ella me pidió que la acompañara a su casa después del trabajo. Sus papás no me querían, así que salíamos a escondidas. Pero nuestra primera cita oficial fue cuando sus papás nos dejaron salir a comer y dar una vuelta.</p>
+        </div>
+        <div class="page" id="page3">
+            <h2>Los Retos</h2>
+            <p>La distancia y la desaprobación de sus padres fueron nuestros mayores desafíos. Pero nuestro amor siempre fue más fuerte que cualquier obstáculo.</p>
+        </div>
+        <div class="page" id="page4">
+            <h2>El Futuro Juntos</h2>
+            <p>Soñamos con vivir juntos, tener nuestra casa propia, carros, dinero, casarnos y ser felices para siempre.</p>
+        </div>
+        <div class="page" id="page5">
+            <h2>Una Pregunta Importante</h2>
+            <p>Ximena, después de todo lo que hemos vivido, quiero preguntarte algo con el corazón:</p>
+            <h3>¿Todavía quieres estar conmigo? ❤️</h3>
+            <button onclick="respuestaSi()">💖 Sí, quiero estar contigo</button>
+            <button onclick="respuestaNo()">💔 No</button>
+        </div>
+        <div class="page" id="page6" style="display: none;">
+            <h2>💖 Me Haces Feliz</h2>
+            <p>Me alegra saber que aún quieres estar conmigo. ❤️ Eres lo más bonito que me ha pasado en la vida, mi princesita. Vamos a seguir luchando por nuestro amor. ❤️‍🩹</p>
+        </div>
+        <div class="page" id="page7" style="display: none;">
+            <h2>💔 Te Dejo Ser Feliz</h2>
+            <p>Si has decidido que no quieres estar conmigo, lo aceptaré con el corazón roto. Pero lo más importante para mí es que seas feliz. 🥺💔</p>
+            <p>Solo quiero decirte que te deseo lo mejor, que te cuides mucho y que siempre recordaré lo especial que eres para mí. 🌹</p>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="prevPage()">⬅ Anterior</button>
+        <button onclick="nextPage()">Siguiente ➡</button>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 5;
+
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(`page${page}`).classList.add('active');
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function respuestaSi() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById("page6").classList.add('active');
+        }
+
+        function respuestaNo() {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById("page7").classList.add('active');
+        }
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.innerHTML = "🌹";
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.top = Math.random() * 100 + "vh";
+            flower.style.animationDuration = (Math.random() * 2 + 4) + "s";
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+
+        setInterval(createFlower, 1500);
+    </script>
+
+</body>
+</html>
